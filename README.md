@@ -27,5 +27,4 @@ Cada branch contém `README.md` próprio com as tabelas e regras de negócio do 
 
 ---
 
-**Repositório:** `evangelz/mvc`  
 **Tecnologias:** Java, Maven, JDBC, PostgreSQL
