@@ -1,73 +1,31 @@
-# CenÃ¡rio 2 â€” Oficina MecÃ¢nica
+# MVC — JDBC + PostgreSQL
 
-Sistema de gerenciamento para oficina mecÃ¢nica com cadastro de clientes, veÃ­culos, serviÃ§os e ordens de serviÃ§o.
+Trabalho acadêmico com 3 sistemas independentes, cada um em sua branch.
 
-## Tecnologias
+## Branches
+
+| Branch | Projeto |
+|--------|---------|
+| cenario1 | Clínica Veterinária — tutores, animais, consultas |
+| cenario2 | Oficina Mecânica — clientes, veículos, ordens de serviço |
+| cenario3 | Escola de Cursos Livres — alunos, cursos, matrículas |
+
+## Requisitos
 
 - Java 25
-- Maven
-- PostgreSQL 16
-- JDBC
+- Docker (PostgreSQL 16)
 
 ## Como executar
 
-1. Suba o banco: `docker compose up -d`
-2. Execute `evangelz.Main`
+`ash
+git checkout <branch>
+docker compose up -d
+# Executar evangelz.Main pela IDE
+`
 
-## Tabelas
+Cada branch contém README.md próprio com as tabelas e regras de negócio do respectivo cenário.
 
-### cliente
-| Campo | Tipo | RestriÃ§Ãµes |
-|-------|------|------------|
-| id | SERIAL | PK |
-| nome | VARCHAR(100) | NOT NULL |
-| telefone | VARCHAR(20) | NOT NULL |
+---
 
-### veiculo
-| Campo | Tipo | RestriÃ§Ãµes |
-|-------|------|------------|
-| id | SERIAL | PK |
-| placa | VARCHAR(10) | NOT NULL |
-| modelo | VARCHAR(100) | NOT NULL |
-| ano | INTEGER | NOT NULL |
-| id_cliente | INTEGER | NOT NULL, FK â†’ cliente ON DELETE CASCADE |
-
-### servico
-| Campo | Tipo | RestriÃ§Ãµes |
-|-------|------|------------|
-| id | SERIAL | PK |
-| nome | VARCHAR(100) | NOT NULL |
-| descricao | VARCHAR(255) | |
-| valor_base | DECIMAL(10,2) | NOT NULL, CHECK (>= 0) |
-
-### ordem_servico
-| Campo | Tipo | RestriÃ§Ãµes |
-|-------|------|------------|
-| id | SERIAL | PK |
-| id_veiculo | INTEGER | NOT NULL, FK â†’ veiculo ON DELETE CASCADE |
-| data_abertura | DATE | NOT NULL |
-| descricao_problema | VARCHAR(255) | NOT NULL |
-| status | VARCHAR(20) | NOT NULL, DEFAULT 'ABERTA', CHECK ('ABERTA','CONCLUIDA') |
-| status_pagamento | VARCHAR(20) | NOT NULL, DEFAULT 'PENDENTE', CHECK ('PENDENTE','PAGO') |
-
-### item_ordem_servico
-| Campo | Tipo | RestriÃ§Ãµes |
-|-------|------|------------|
-| id | SERIAL | PK |
-| id_ordem_servico | INTEGER | NOT NULL, FK â†’ ordem_servico ON DELETE CASCADE |
-| id_servico | INTEGER | NOT NULL, FK â†’ servico |
-| quantidade | INTEGER | NOT NULL, CHECK (> 0) |
-| valor_unitario | DECIMAL(10,2) | NOT NULL, CHECK (>= 0) |
-
-## Regras de NegÃ³cio
-
-| # | Regra | Local |
-|---|-------|-------|
-| RN1 | Cliente deve ter nome e telefone obrigatÃ³rios | ClienteService |
-| RN2 | VeÃ­culo nÃ£o existe sem cliente | VeiculoService |
-| RN3 | OS nÃ£o existe sem veÃ­culo e serviÃ§os | OrdemServicoService |
-| RN4 | Valor da OS = soma (quantidade * valor_unitario) dos itens | OrdemServicoService |
-| RN5 | Quantidade dos itens deve ser > 0 | OrdemServicoService |
-| RN6 | Valor unitÃ¡rio >= 0 | OrdemServicoService |
-| RN7 | SÃ³ fechar OS com status ABERTA | OrdemServicoService |
-| RN8 | SÃ³ baixar pagamento com OS CONCLUIDA e PENDENTE | OrdemServicoService |
+**Repositório:** evangelz/mvc
+**Tecnologias:** Java, Maven, JDBC, PostgreSQL
