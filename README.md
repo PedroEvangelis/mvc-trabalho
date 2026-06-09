@@ -1,14 +1,14 @@
-# MVC â€” JDBC + PostgreSQL
+# MVC — JDBC + PostgreSQL
 
-Trabalho acadÃªmico com 3 sistemas independentes, cada um em sua branch.
+Trabalho acadêmico com 3 sistemas independentes, cada um em sua branch.
 
 ## Branches
 
 | Branch | Projeto |
 |--------|---------|
-| `cenario1` | ClÃ­nica VeterinÃ¡ria â€” tutores, animais, consultas |
-| `cenario2` | Oficina MecÃ¢nica â€” clientes, veÃ­culos, ordens de serviÃ§o |
-| `cenario3` | Escola de Cursos Livres â€” alunos, cursos, matrÃ­culas |
+| cenario1 | Clínica Veterinária — tutores, animais, consultas |
+| cenario2 | Oficina Mecânica — clientes, veículos, ordens de serviço |
+| cenario3 | Escola de Cursos Livres — alunos, cursos, matrículas |
 
 ## Requisitos
 
@@ -17,14 +17,15 @@ Trabalho acadÃªmico com 3 sistemas independentes, cada um em sua branch.
 
 ## Como executar
 
-```bash
+`ash
 git checkout <branch>
 docker compose up -d
 # Executar evangelz.Main pela IDE
-```
+`
 
-Cada branch contÃ©m `README.md` prÃ³prio com as tabelas e regras de negÃ³cio do respectivo cenÃ¡rio.
+Cada branch contém README.md próprio com as tabelas e regras de negócio do respectivo cenário.
 
 ---
 
+**Repositório:** evangelz/mvc
 **Tecnologias:** Java, Maven, JDBC, PostgreSQL
