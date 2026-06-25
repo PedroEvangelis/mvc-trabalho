@@ -44,8 +44,11 @@ public class TutorController {
         String nome = scanner.nextLine();
         System.out.print("Telefone: ");
         String telefone = scanner.nextLine();
+        System.out.println("Endereco: ");
+        String endereco = scanner.nextLine();
+
         try {
-            tutorService.cadastrar(nome, telefone);
+            tutorService.cadastrar(nome, telefone, endereco);
             System.out.println("Tutor cadastrado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
@@ -83,7 +86,9 @@ public class TutorController {
             String nome = scanner.nextLine();
             System.out.print("Novo telefone: ");
             String telefone = scanner.nextLine();
-            tutorService.atualizar(id, nome, telefone);
+            System.out.print("Novo endereco: ");
+            String endereco = scanner.nextLine();
+            tutorService.atualizar(id, nome, telefone, endereco);
             System.out.println("Tutor atualizado!");
         } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
