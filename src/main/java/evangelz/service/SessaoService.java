@@ -5,9 +5,10 @@ import evangelz.repository.VeterinarioRepository;
 
 import java.util.List;
 
+
 public class SessaoService {
     private final VeterinarioRepository repository = new VeterinarioRepository();
-    private Veterinario veterinarioLogado;
+    private static Veterinario veterinarioLogado;
 
     public List<Veterinario> listarVeterinarios() {
         return repository.listar();
@@ -16,7 +17,7 @@ public class SessaoService {
     public Veterinario selecionarVeterinario(int id) {
         Veterinario v = repository.buscarPorId(id);
         if (v == null) throw new IllegalArgumentException("Veterinário não encontrado.");
-        this.veterinarioLogado = v;
+        veterinarioLogado = v;
         return v;
     }
 
@@ -26,7 +27,7 @@ public class SessaoService {
         }
         Veterinario v = new Veterinario(nome.trim());
         repository.cadastrar(v);
-        this.veterinarioLogado = v;
+        veterinarioLogado = v;
         return v;
     }
 

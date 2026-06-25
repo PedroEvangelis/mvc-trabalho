@@ -1,14 +1,14 @@
-# MVC — JDBC + PostgreSQL
+# MVC JDBC + PostgreSQL
 
-Trabalho acadêmico com 3 sistemas independentes, cada um em sua branch.
+Trabalho acadï¿½mico com 3 sistemas independentes, cada um em sua branch.
 
 ## Branches
 
 | Branch | Projeto |
 |--------|---------|
-| cenario1 | Clínica Veterinária — tutores, animais, consultas |
-| cenario2 | Oficina Mecânica — clientes, veículos, ordens de serviço |
-| cenario3 | Escola de Cursos Livres — alunos, cursos, matrículas |
+| cenario1 | Clï¿½nica Veterinï¿½ria ï¿½ tutores, animais, consultas |
+| cenario2 | Oficina Mecï¿½nica ï¿½ clientes, veï¿½culos, ordens de serviï¿½o |
+| cenario3 | Escola de Cursos Livres ï¿½ alunos, cursos, matrï¿½culas |
 
 ## Requisitos
 
@@ -23,9 +23,15 @@ docker compose up -d
 # Executar evangelz.Main pela IDE
 `
 
-Cada branch contém README.md próprio com as tabelas e regras de negócio do respectivo cenário.
+Cada branch contï¿½m README.md prï¿½prio com as tabelas e regras de negï¿½cio do respectivo cenï¿½rio.
 
 ---
 
-**Repositório:** evangelz/mvc
+**Repositï¿½rio:** evangelz/mvc
 **Tecnologias:** Java, Maven, JDBC, PostgreSQL
+
+            CREATE TABLE IF NOT EXISTS veterinario (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL);
+            CREATE TABLE IF NOT EXISTS tutor (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, telefone VARCHAR(20) NOT NULL);
+            CREATE TABLE IF NOT EXISTS animal (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, especie VARCHAR(50) NOT NULL, raca VARCHAR(50), id_tutor INTEGER NOT NULL, FOREIGN KEY (id_tutor) REFERENCES tutor(id) ON DELETE CASCADE);
+            CREATE TABLE IF NOT EXISTS consulta (id SERIAL PRIMARY KEY, id_animal INTEGER NOT NULL, id_veterinario INTEGER NOT NULL, data DATE NOT NULL, motivo VARCHAR(255) NOT NULL, valor DECIMAL(10,2) NOT NULL CHECK (valor >= 0), status_pagamento VARCHAR(20) NOT NULL DEFAULT 'PENDENTE' CHECK (status_pagamento IN ('PENDENTE', 'PAGO')), FOREIGN KEY (id_animal) REFERENCES animal(id) ON DELETE CASCADE, FOREIGN KEY (id_veterinario) REFERENCES veterinario(id));
+        
