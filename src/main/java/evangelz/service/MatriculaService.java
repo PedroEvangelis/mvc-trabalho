@@ -2,6 +2,7 @@ package evangelz.service;
 
 import evangelz.model.*;
 import evangelz.repository.*;
+import evangelz.util.Conexao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

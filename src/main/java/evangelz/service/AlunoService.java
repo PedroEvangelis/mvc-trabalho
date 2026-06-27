@@ -13,7 +13,9 @@ public class AlunoService {
             throw new IllegalArgumentException("Nome do aluno é obrigatório.");
         if (email == null || email.trim().isEmpty())
             throw new IllegalArgumentException("Email do aluno é obrigatório.");
-        repository.cadastrar(new Aluno(nome.trim(), email.trim(), telefone != null ? telefone.trim() : null));
+        if (telefone == null || telefone.trim().isEmpty())
+            throw new IllegalArgumentException("Telefone do aluno é obrigatório.");
+        repository.cadastrar(new Aluno(nome.trim(), email.trim(), telefone.trim()));
     }
 
     public List<Aluno> listar() { return repository.listar(); }
@@ -29,10 +31,12 @@ public class AlunoService {
             throw new IllegalArgumentException("Nome do aluno é obrigatório.");
         if (email == null || email.trim().isEmpty())
             throw new IllegalArgumentException("Email do aluno é obrigatório.");
+        if (telefone == null || telefone.trim().isEmpty())
+            throw new IllegalArgumentException("Telefone do aluno é obrigatório.");
         Aluno a = buscarPorId(id);
         a.setNome(nome.trim());
         a.setEmail(email.trim());
-        a.setTelefone(telefone != null ? telefone.trim() : null);
+        a.setTelefone(telefone.trim());
         repository.atualizar(a);
     }
 
